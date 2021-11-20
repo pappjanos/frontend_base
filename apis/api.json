@@ -1,0 +1,6 @@
+{
+  "localhost:8080": {
+    "USER_SERVICE_URL": "http://localhost:1111",
+    "DUMMY_SERVICE_URL": "http://localhost:2222"
+  }
+}
