@@ -15,9 +15,12 @@ class UserService extends Service {
     );
   }
 
-  login() {
+  login({ email, password }) {
     console.log("axios get");
-    return this.api.get("");
+    return this.api.post("/login", {
+      email,
+      password,
+    });
   }
 }
 

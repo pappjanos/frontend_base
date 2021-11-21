@@ -4,7 +4,21 @@ export const actions = {
   setEmail(context, to) {
     context.commit("SET_EMAIL", to);
   },
-  login(context, { email, password }) {
-    userService.login();
+  async login(context, { email, password }) {
+    try {
+      const token = await userService.login({ email, password });
+      console.log(token.data);
+    } catch (error) {
+      console.log(error);
+      /*
+      switch (error.status) {
+        case 404:
+          console.log("404");
+          break;
+
+        default:
+          break;
+      }*/
+    }
   },
 };
