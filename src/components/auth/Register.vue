@@ -9,7 +9,7 @@
       <v-container>
         <v-row>
           <v-col cols="8">
-            <h3>Login</h3>
+            <h3>Register</h3>
           </v-col>
         </v-row>
         <v-row>
@@ -18,6 +18,17 @@
               :rules="[rules.required, rules.email]"
               v-model="email"
               label="E-mail"
+              required
+            >
+            </v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="8">
+            <v-text-field
+              :rules="[rules.required, rules.email]"
+              v-model="email"
+              label="E-mail mégegyszer"
               required
             >
             </v-text-field>
@@ -41,7 +52,23 @@
         </v-row>
         <v-row>
           <v-col cols="8">
-            <v-btn :disabled="!valid" type="submit"> Login </v-btn>
+            <v-text-field
+              v-model="password"
+              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showPass ? 'text' : 'password'"
+              label="Password"
+              @click:append="showPass = !showPass"
+              counter
+              hint="At least 8 characters"
+              :rules="[rules.required, rules.min]"
+              required
+            >
+            </v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="8">
+            <v-btn :disabled="!valid" type="submit"> Register </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -53,15 +80,15 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "Login",
+  name: "Register",
   computed: {
     ...mapGetters("user", ["getEmail"]),
   },
   methods: {
-    ...mapActions("user", ["login"]),
+    ...mapActions("user", ["register"]),
     onSubmit() {
       if (this.$refs.form.validate()) {
-        this.login({
+        this.register({
           email: this.email,
           password: this.password,
         });

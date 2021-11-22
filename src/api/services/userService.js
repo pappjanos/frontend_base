@@ -7,7 +7,14 @@ class UserService extends Service {
     super(Api[window.location.host].USER_SERVICE_URL);
     this.api.interceptors.request.use(
       (config) => {
-        console.log("request interceptor for user service outgoing requests");
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+    this.api.interceptors.response.use(
+      (config) => {
         return config;
       },
       (error) => {
@@ -17,11 +24,14 @@ class UserService extends Service {
   }
 
   login({ email, password }) {
-    console.log("axios get");
     return this.api.post("/login", {
       email,
       password,
     });
+  }
+
+  checkMailAvailability(email) {
+    return this.api.post("/checkmailavailability", { email });
   }
 }
 
