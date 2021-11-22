@@ -18,7 +18,7 @@ export default class Service {
       },
       (error) => {
         store.dispatch(
-          "general/setAlert",
+          "general/setSnackbar",
           {
             status: true,
             message: `Error status: ${error.response.status}`,

@@ -30,8 +30,8 @@ class UserService extends Service {
     });
   }
 
-  checkMailAvailability(email) {
-    return this.api.post("/checkmailavailability", { email });
+  register(user) {
+    return this.api.post("/register", user);
   }
 }
 

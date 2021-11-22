@@ -1,8 +1,8 @@
 export const actions = {
-  setAlert(context, to) {
-    context.commit("SET_ALERT", to);
+  setSnackbar(context, to) {
+    context.commit("SET_SNACKBAR", to);
   },
-  closeAlert(context) {
-    context.commit("CLOSE_ALERT", false);
+  closeSnackbar(context) {
+    context.commit("CLOSE_SNACKBAR", false);
   },
 };

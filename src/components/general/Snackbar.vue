@@ -1,14 +1,14 @@
 <template>
   <div class="text-center">
     <v-snackbar
-      :color="getAlert.color"
-      v-model="getAlert.status"
-      :timeout="getAlert.timeout"
+      :color="getSnackbar.color"
+      v-model="getSnackbar.status"
+      :timeout="getSnackbar.timeout"
     >
-      {{ getAlert.message }}
+      {{ getSnackbar.message }}
 
       <template v-slot:action="{ attrs }">
-        <v-btn text v-bind="attrs" @click="closeAlert"> Close </v-btn>
+        <v-btn text v-bind="attrs" @click="closeSnackbar"> Close </v-btn>
       </template>
     </v-snackbar>
   </div>
@@ -18,10 +18,10 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
-    ...mapGetters("general", ["getAlert"]),
+    ...mapGetters("general", ["getSnackbar"]),
   },
   methods: {
-    ...mapActions("general", ["closeAlert"]),
+    ...mapActions("general", ["closeSnackbar"]),
   },
 };
 </script>

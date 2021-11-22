@@ -6,5 +6,4 @@ export const state = {
     roles: Array,
     token: String,
   },
-  mailAvailability: false,
 };

@@ -1,8 +1,8 @@
 export const mutations = {
-  SET_ALERT(state, to) {
-    state.alert = to;
+  SET_SNACKBAR(state, to) {
+    state.snackbar = to;
   },
-  CLOSE_ALERT(state) {
-    state.alert.status = false;
+  CLOSE_SNACKBAR(state) {
+    state.snackbar.status = false;
   },
 };

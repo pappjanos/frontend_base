@@ -1,3 +1,3 @@
 export const getters = {
-  getAlert: (state) => state.alert,
+  getSnackbar: (state) => state.snackbar,
 };

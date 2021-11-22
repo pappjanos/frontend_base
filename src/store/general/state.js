@@ -1,5 +1,5 @@
 export const state = {
-  alert: {
+  snackbar: {
     status: false,
     message: "",
     timeout: 2000,
