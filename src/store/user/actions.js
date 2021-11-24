@@ -25,9 +25,7 @@ export const actions = {
           context.dispatch(
             "general/setSnackbar",
             {
-              status: true,
               message: `Registration successfull!`,
-              timeout: 5000,
               color: "green",
             },
             { root: true }
@@ -39,9 +37,7 @@ export const actions = {
           context.dispatch(
             "general/setSnackbar",
             {
-              status: true,
               message: `The e-mail address ${email} is already used, try to log in!`,
-              timeout: 5000,
               color: "red",
             },
             { root: true }

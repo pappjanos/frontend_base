@@ -20,9 +20,7 @@ export default class Service {
         store.dispatch(
           "general/setSnackbar",
           {
-            status: true,
             message: `Error status: ${error.response.status}`,
-            timeout: 5000,
             color: "red",
           },
           { root: true }
