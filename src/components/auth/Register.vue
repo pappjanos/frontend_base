@@ -92,6 +92,8 @@ export default {
           email: this.email,
           password: this.password,
         });
+        this.email = null;
+        this.password = null;
       }
     },
   },

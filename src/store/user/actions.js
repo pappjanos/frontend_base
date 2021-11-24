@@ -8,7 +8,6 @@ export const actions = {
   async login(context, { email, password }) {
     try {
       const token = await userService.login({ email, password });
-      console.log(token);
     } catch (error) {
       console.log(error);
     }
@@ -20,8 +19,8 @@ export const actions = {
     };
     try {
       const response = await userService.register(user);
-      switch (response.data.registerStatus) {
-        case "SUCCESS":
+      switch (response.data.status) {
+        case "Succesfull registration":
           context.dispatch(
             "general/setSnackbar",
             {
@@ -33,15 +32,28 @@ export const actions = {
           router.push("Login");
           break;
 
-        case "FAILED":
+        case "Already registered":
           context.dispatch(
             "general/setSnackbar",
             {
-              message: `The e-mail address ${email} is already used, try to log in!`,
+              message: `The e-mail address ${email} is already used, try to log in with it or ask for a new password if you forgot it!`,
               color: "red",
             },
             { root: true }
           );
+          break;
+
+        case "Database error":
+          context.dispatch(
+            "general/setSnackbar",
+            {
+              message: `Database error, try again later!`,
+              color: "red",
+            },
+            { root: true }
+          );
+
+          break;
 
         default:
           break;
