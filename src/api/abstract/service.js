@@ -29,4 +29,10 @@ export default class Service {
       }
     );
   }
+  setAuthToken(token) {
+    this.api.defaults.headers.common.Authorization = `Bearer ${token}`;
+  }
+  removeAuthToken() {
+    this.api.defaults.headers.common.Authorization = null;
+  }
 }
