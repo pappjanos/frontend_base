@@ -3,8 +3,9 @@ import Api from "../../../apis/api.json";
 
 class UserService extends Service {
   constructor() {
-    console.log(window.location.host);
     super(Api[window.location.host].USER_SERVICE_URL);
+
+    /*
     this.api.interceptors.request.use(
       (config) => {
         return config;
@@ -20,7 +21,7 @@ class UserService extends Service {
       (error) => {
         return Promise.reject(error);
       }
-    );
+    );*/
   }
 
   login({ email, password }) {

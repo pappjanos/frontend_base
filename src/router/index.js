@@ -6,12 +6,14 @@ import { parse } from "@/util/jwt"
 Vue.use(VueRouter);
 
 function checkTokenAndUserRole(to, from, next) {
-  const sessionToken = window.sessionStorage.getItem('token')
+  const sessionToken = localStorage.getItem('token')
+  console.log(sessionToken)
   if (!sessionToken) {
     return next('/login')
   }
   const tokenPayload = parse(sessionToken)
   console.log(tokenPayload)
+  next()
 }
 
 const routes = [

@@ -4,6 +4,7 @@ import store from "../../store/index";
 export default class Service {
   constructor(baseURL) {
     this.api = axios.create({ baseURL });
+    /*
     this.api.interceptors.request.use(
       (config) => {
         return config;
@@ -17,6 +18,7 @@ export default class Service {
         return config;
       },
       (error) => {
+        
         store.dispatch(
           "general/setSnackbar",
           {
@@ -27,7 +29,7 @@ export default class Service {
         );
         return Promise.reject(error);
       }
-    );
+    );*/
   }
   setAuthToken(token) {
     this.api.defaults.headers.common.Authorization = `Bearer ${token}`;

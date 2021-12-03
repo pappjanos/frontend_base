@@ -4,6 +4,8 @@ import Api from "../../../apis/api.json";
 class DummyService extends Service {
   constructor() {
     super(Api[window.location.host].DUMMY_SERVICE_URL);
+
+    /*
     this.api.interceptors.request.use(
       (config) => {
         console.log("request interceptor for dummy service outgoing requests");
@@ -12,12 +14,12 @@ class DummyService extends Service {
       (error) => {
         return Promise.reject(error);
       }
-    );
+    );*/
   }
 
   dummyaction() {
-    console.log("axios get");
-    return this.api.get("");
+    console.log("axios post");
+    return this.api.post("/test", {asdf: "asdf"});
   }
 }
 
