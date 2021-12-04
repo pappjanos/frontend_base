@@ -35,7 +35,7 @@ export const actions = {
      dummyService.setAuthToken(response.data.token);
 
      setMessage(context, response.data.message, "green")
-     router.push("Home");
+     router.push({name: "Home"});
    } catch (error) {
      setMessage(context, error.response.data.message)
    }
@@ -49,11 +49,15 @@ export const actions = {
     try {
       const response = await userService.register(user);
       setMessage(context, response.data.message, "green")
-      router.push("Login");
+      router.push({name: "Login"});
     } catch (error) {
       setMessage(context, error.response.data.message)
     }
   },
 
-  async logout(context) {},
+  async logout(context) {
+    localStorage.clear("token");
+    context.commit("CLEAR_USER")
+    router.push({name: "Login"});
+  },
 };

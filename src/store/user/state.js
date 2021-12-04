@@ -1,7 +1,7 @@
 export const state = {
   user: {
-    email: String,
-    isLoggedIn: Boolean,
-    roles: Array,
+    email: null,
+    isLoggedIn: false,
+    roles: null,
   },
 };

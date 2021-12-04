@@ -7,6 +7,8 @@ export const mutations = {
     state.user = to
   }, 
   CLEAR_USER(state) {
-    state.user = null
+    state.user.email = null;
+    state.user.isLoggedIn = false;
+    state.user.roles = null;
   }
 };
