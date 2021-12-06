@@ -42,7 +42,7 @@
 
         <v-row>
           <v-col cols="8">
-            <v-btn :disabled="!valid" type="submit"> Register </v-btn>
+            <v-btn :loading="loading" :disabled="!valid || loading" type="submit"> Register </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -60,10 +60,12 @@ export default {
     ...mapActions("user", ["register"]),
     onSubmit() {
       if (this.$refs.form.validate()) {
+        this.loading = true;
         this.register({
           email: this.email,
           password: this.password,
         });
+        this.loading = false;
       }
     },
   },
@@ -73,6 +75,7 @@ export default {
       password: "",
       valid: true,
       showPass: false,
+      loading: false,
       rules: {
         required: (value) => !!value || "Required.",
         min: (v) => v.length >= 8 || "Min 8 characters",

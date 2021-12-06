@@ -1,8 +1,19 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      {{ getUser.isloggedIn ? getUser.email : "" }}
-      <v-btn v-if="getUser.isloggedIn" @click="logout">Logout </v-btn>
+      <v-toolbar-title>
+        <h1 class="pointer headline" >
+          <v-icon>fas fa-mobile-alt</v-icon>
+          Blog
+        </h1>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn v-if="!getUser.isloggedIn" to="/register" text>Registration</v-btn>
+        <v-btn v-if="!getUser.isloggedIn" to="/login" text>Sign in</v-btn>
+        <v-btn v-if="getUser.isloggedIn" to="/profile" text>Logged in as: {{ getUser.isloggedIn && getUser.email }}</v-btn>
+        <v-btn v-if="getUser.isloggedIn" text @click="logout">Logout </v-btn>
+      </v-toolbar-items>
     </v-app-bar>
 
     <v-main>

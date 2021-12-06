@@ -41,7 +41,7 @@
         </v-row>
         <v-row>
           <v-col cols="8">
-            <v-btn :disabled="!valid" type="submit"> Login </v-btn>
+            <v-btn :loading="loading" :disabled="!valid || loading" type="submit"> Login </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -59,12 +59,14 @@ export default {
   },
   methods: {
     ...mapActions("user", ["login"]),
-    onSubmit() {
+    async onSubmit() {
       if (this.$refs.form.validate()) {
-        this.login({
+        this.loading = true;
+        await this.login({
           email: this.email,
           password: this.password,
         });
+        this.loading = false;
       }
     },
   },
@@ -74,6 +76,7 @@ export default {
       password: "",
       valid: true,
       showPass: false,
+      loading: false,
       rules: {
         required: (value) => !!value || "Required.",
         min: (v) => v.length >= 8 || "Min 8 characters",
