@@ -4,11 +4,13 @@ export const mutations = {
   },
 
   SET_USER(state, to) {
-    state.user = to
-  }, 
-  CLEAR_USER(state) {
-    state.user.email = null;
-    state.user.isLoggedIn = false;
-    state.user.roles = null;
-  }
+    state.user = to;
+  },
+  LOGOUT_USER(state) {
+    state.user = {
+      email: null,
+      isLoggedIn: false,
+      roles: null,
+    };
+  },
 };

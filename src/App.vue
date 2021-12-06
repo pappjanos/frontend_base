@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark> 
-      {{ getUser.isloggedIn ? getUser.email : '' }} 
-      <v-btn v-if="getUser.isloggedIn" @click="logout">Logout {{ getUser.isloggedIn }}</v-btn>
+    <v-app-bar app color="primary" dark>
+      {{ getUser.isloggedIn ? getUser.email : "" }}
+      <v-btn v-if="getUser.isloggedIn" @click="logout">Logout </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -14,7 +14,7 @@
 
 <script>
 import Snackbar from "./components/general/Snackbar.vue";
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "App",
   components: {
