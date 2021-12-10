@@ -2,24 +2,29 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <v-toolbar-title>
-        <h1 class="pointer headline" >
+        <h1 class="pointer headline">
           <v-icon>fas fa-mobile-alt</v-icon>
-          Blog
+          Private Blog
         </h1>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn v-if="!getUser.isloggedIn" to="/register" text>Registration</v-btn>
-        <v-btn v-if="!getUser.isloggedIn" to="/login" text>Sign in</v-btn>
-        <v-btn v-if="getUser.isloggedIn" to="/profile" text>Logged in as: {{ getUser.isloggedIn && getUser.email }}</v-btn>
-        <v-btn v-if="getUser.isloggedIn" text @click="logout">Logout </v-btn>
+        <v-btn v-if="!user.isloggedIn" to="/register" text>Registration</v-btn>
+        <v-btn v-if="!user.isloggedIn" to="/login" text>Sign in</v-btn>
+        <v-btn v-if="user.isloggedIn" text
+          >Logged in as: {{ user.isloggedIn && user.email }}</v-btn
+        >
+        <v-btn v-if="user.isloggedIn" text @click="logout">Logout </v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
     <v-main>
-      <router-view />
+      <v-container fluid>
+        <router-view />
+      </v-container>
       <Snackbar />
     </v-main>
+    <v-footer app color="primary" dark> All rights reserved 2021 </v-footer>
   </v-app>
 </template>
 
@@ -32,7 +37,7 @@ export default {
     Snackbar,
   },
   computed: {
-    ...mapGetters("user", ["getUser"]),
+    ...mapGetters("user", ["user"]),
   },
   methods: {
     ...mapActions("user", ["logout"]),

@@ -11,6 +11,7 @@ export const mutations = {
       email: null,
       isLoggedIn: false,
       roles: null,
+      id: null,
     };
   },
 };

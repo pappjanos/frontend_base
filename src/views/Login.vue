@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-card width="600px" class="mx-auto">
     <v-form
       v-model="valid"
       lazy-validation
@@ -8,12 +8,12 @@
     >
       <v-container>
         <v-row>
-          <v-col cols="8">
+          <v-col cols="12">
             <h3>Login</h3>
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="8">
+          <v-col cols="12">
             <v-text-field
               :rules="[rules.required, rules.email]"
               v-model="email"
@@ -24,7 +24,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="8">
+          <v-col cols="12">
             <v-text-field
               v-model="password"
               :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
@@ -40,13 +40,19 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="8">
-            <v-btn :loading="loading" :disabled="!valid || loading" type="submit"> Login </v-btn>
+          <v-col cols="12">
+            <v-btn
+              :loading="loading"
+              :disabled="!valid || loading"
+              type="submit"
+            >
+              Login
+            </v-btn>
           </v-col>
         </v-row>
       </v-container>
     </v-form>
-  </div>
+  </v-card>
 </template>
 
 <script>
@@ -54,9 +60,6 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Login",
-  computed: {
-    ...mapGetters("user", ["getEmail"]),
-  },
   methods: {
     ...mapActions("user", ["login"]),
     async onSubmit() {

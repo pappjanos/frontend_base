@@ -1,10 +1,12 @@
 {
   "localhost:8080": {
     "USER_SERVICE_URL": "http://localhost:1111",
-    "DUMMY_SERVICE_URL": "http://localhost:1111"
+    "DUMMY_SERVICE_URL": "http://localhost:1111",
+    "BLOG_SERVICE_URL": "http://localhost:1111"
   },
   "murmuring-escarpment-18206.herokuapp.com": {
     "USER_SERVICE_URL": "https://dashboard.heroku.com/apps/lespaulka001-nodetest",
-    "DUMMY_SERVICE_URL": "http://localhost:2222"
+    "DUMMY_SERVICE_URL": "http://localhost:2222",
+    "BLOG_SERVICE_URL": "http://localhost:1111"
   }
 }

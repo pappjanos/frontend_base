@@ -3,5 +3,6 @@ export const state = {
     email: null,
     isLoggedIn: false,
     roles: null,
+    id: null,
   },
 };

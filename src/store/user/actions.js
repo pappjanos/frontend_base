@@ -1,5 +1,6 @@
 import userService from "../../api/services/userService";
 import dummyService from "../../api/services/dummyService";
+import blogService from "../../api/services/blogService";
 import { parse } from "@/util/jwt";
 import router from "../../router";
 
@@ -29,10 +30,12 @@ export const actions = {
         email: tokenPayload.user.email,
         isloggedIn: true,
         roles: tokenPayload.user.roles,
+        id: tokenPayload.user.id,
       });
 
       // call setAuthToken for all apis here
       dummyService.setAuthToken(response.data.token);
+      blogService.setAuthToken(response.data.token);
 
       setMessage(context, response.data.message, "green");
       router.push({ name: "Home" });
@@ -58,6 +61,6 @@ export const actions = {
   async logout(context) {
     localStorage.clear("token");
     context.commit("LOGOUT_USER");
-    router.push({ name: "Login" });
+    router.push({ name: "Home" });
   },
 };
