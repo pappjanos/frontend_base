@@ -7,11 +7,14 @@
       @submit.prevent="onSubmit"
     >
       <v-container>
+       <v-card-title>
         <v-row>
           <v-col cols="12">
-            <h3>Login</h3>
+            Login
           </v-col>
         </v-row>
+        </v-card-title>
+        <v-card-text>
         <v-row>
           <v-col cols="12">
             <v-text-field
@@ -39,6 +42,8 @@
             </v-text-field>
           </v-col>
         </v-row>
+        </v-card-text>
+        <v-card-actions>
         <v-row>
           <v-col cols="12">
             <v-btn
@@ -50,6 +55,7 @@
             </v-btn>
           </v-col>
         </v-row>
+        </v-card-actions>
       </v-container>
     </v-form>
   </v-card>

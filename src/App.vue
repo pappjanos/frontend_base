@@ -9,6 +9,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
+        <v-btn v-if="user.isloggedIn" to="/add-new-entry" text>Add new Entry</v-btn>
         <v-btn v-if="!user.isloggedIn" to="/register" text>Registration</v-btn>
         <v-btn v-if="!user.isloggedIn" to="/login" text>Sign in</v-btn>
         <v-btn v-if="user.isloggedIn" text
@@ -19,7 +20,7 @@
     </v-app-bar>
 
     <v-main>
-      <v-container fluid>
+      <v-container fluid class="px-10">
         <router-view />
       </v-container>
       <Snackbar />
@@ -40,7 +41,10 @@ export default {
     ...mapGetters("user", ["user"]),
   },
   methods: {
-    ...mapActions("user", ["logout"]),
+    ...mapActions("user", ["logout", "reloadUserFromLocalStorage"]),
+  },
+  created() {
+    this.reloadUserFromLocalStorage()
   },
   data: () => ({
     //

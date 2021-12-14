@@ -1,5 +1,5 @@
 <template>
-  <v-card width="600px" class="mx-auto">
+  <v-card width="800" class="mx-auto">
     <v-form
       v-model="valid"
       lazy-validation
@@ -10,7 +10,7 @@
         <v-card-title>
         <v-row>
           <v-col cols="12">
-            Register
+            Add new entry
           </v-col>
         </v-row>
         </v-card-title>
@@ -18,9 +18,9 @@
         <v-row>
           <v-col cols="12">
             <v-text-field
-              :rules="[rules.required, rules.email]"
-              v-model="email"
-              label="E-mail"
+              :rules="[rules.required]"
+              v-model="title"
+              label="Add a title"
               required
             >
             </v-text-field>
@@ -28,18 +28,13 @@
         </v-row>
         <v-row>
           <v-col cols="12">
-            <v-text-field
-              v-model="password"
-              :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="showPass ? 'text' : 'password'"
-              label="Password"
-              @click:append="showPass = !showPass"
-              counter
-              hint="At least 8 characters"
-              :rules="[rules.required, rules.min]"
+            <v-textarea
+              name="text"
+              label="Add your story"
+              v-model="text"
+              :rules="[rules.required]"
               required
-            >
-            </v-text-field>
+            ></v-textarea>
           </v-col>
         </v-row>
         </v-card-text>
@@ -51,30 +46,34 @@
               :disabled="!valid || loading"
               type="submit"
             >
-              Register
+              Submit
             </v-btn>
           </v-col>
         </v-row>
-        </v-card-actions>
+        </v-card-actions>  
       </v-container>
     </v-form>
   </v-card>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "Register",
-  computed: {},
+  name: "EntryForm",
+  computed: {
+    ...mapGetters("user", ["user"]),
+  },
   methods: {
-    ...mapActions("user", ["register"]),
-    onSubmit() {
+    ...mapActions("blog", ["addNewEntry"]),
+    ...mapActions("blog", ["updateEntry"]),
+    async onSubmit() {
       if (this.$refs.form.validate()) {
         this.loading = true;
-        this.register({
-          email: this.email,
-          password: this.password,
+        await this.addNewEntry({
+          title: this.title,
+          text: this.text,
+          user_id: this.user.id,
         });
         this.loading = false;
       }
@@ -82,19 +81,12 @@ export default {
   },
   data() {
     return {
-      email: "",
-      password: "",
+      title: "",
+      text: "",
       valid: true,
-      showPass: false,
       loading: false,
       rules: {
         required: (value) => !!value || "Required.",
-        min: (v) => v.length >= 8 || "Min 8 characters",
-        email: (value) => {
-          const pattern =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          return pattern.test(value) || "Invalid e-mail.";
-        },
       },
     };
   },

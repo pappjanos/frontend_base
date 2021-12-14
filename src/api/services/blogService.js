@@ -9,6 +9,14 @@ class BlogService extends Service {
   getPosts(userId) {
     return this.api.get("/blog-entry", { params: userId });
   }
+
+  getPost(postId) {
+    return this.api.get("/blog-entry/" + postId);
+  }
+
+  addPost(post) {
+    return this.api.post("/blog-entry", post)
+  }
 }
 
 const blogService = new BlogService();

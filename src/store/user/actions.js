@@ -38,9 +38,17 @@ export const actions = {
       blogService.setAuthToken(response.data.token);
 
       setMessage(context, response.data.message, "green");
-      router.push({ name: "Home" });
+      router.push({ name: "Home" }).catch(()=>{});
     } catch (error) {
       setMessage(context, error.response.data.message);
+    }
+  },
+
+  reloadUserFromLocalStorage(context) {
+    if (localStorage.getItem("user")) {
+      context.commit("RELOAD_USER_FROM_LOCAL_STORAGE")
+    } else {
+      context.dispatch('logout')
     }
   },
 
@@ -52,7 +60,7 @@ export const actions = {
     try {
       const response = await userService.register(user);
       setMessage(context, response.data.message, "green");
-      router.push({ name: "Login" });
+      router.push({ name: "Login" }).catch(()=>{});
     } catch (error) {
       setMessage(context, error.response.data.message);
     }
@@ -61,6 +69,6 @@ export const actions = {
   async logout(context) {
     localStorage.clear("token");
     context.commit("LOGOUT_USER");
-    router.push({ name: "Home" });
+    router.push({ name: "Home" }).catch(()=>{});
   },
 };

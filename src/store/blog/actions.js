@@ -1,6 +1,5 @@
-import userService from "../../api/services/userService";
-import dummyService from "../../api/services/dummyService";
 import blogService from "../../api/services/blogService";
+import router from "../../router";
 
 function setMessage(context, message, color = "red") {
   context.dispatch(
@@ -14,6 +13,7 @@ function setMessage(context, message, color = "red") {
 }
 
 export const actions = {
+
   async getBlogEntries(context, userId) {
     try {
       const response = await blogService.getPosts({ userId });
@@ -23,4 +23,26 @@ export const actions = {
       setMessage(context, error.response.data.message);
     }
   },
+
+  async getBlogEntry(context, blogEntryId) {
+    try {
+      const response = await blogService.getPost(blogEntryId);
+      context.commit("SET_BLOG_ENTRY", response.data.blogEntry)
+    } catch (error) {
+      console.log(error)
+      setMessage(context, error.response.data.message);
+    }
+  },
+
+  async addNewEntry(context, post) {
+    try {
+      const response = await blogService.addPost(post);
+      context.commit("ADD_BLOG_ENTRY", response.data.blogEntry)
+      setMessage(context, response.data.message, 'green');
+      router.push({ name: "Home" }).catch(()=>{});
+    } catch (error) {
+      console.log(error)
+      setMessage(context, error.response.data.message);
+    }
+  }
 };
