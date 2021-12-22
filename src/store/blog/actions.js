@@ -44,5 +44,26 @@ export const actions = {
       console.log(error)
       setMessage(context, error.response.data.message);
     }
-  }
+  },
+  async patchEntry(context, patch) {
+    try {
+      const response = await blogService.patchPost(patch);
+      context.commit("PATCH_BLOG_ENTRY", response.data.updatedBlogEntry, response.data.updatedBlogEntry.id)
+      setMessage(context, response.data.message, 'green');
+    } catch (error) {
+      console.log(error)
+      setMessage(context, error.response.data.message);
+    }
+  },
+  async deleteEntry(context, id) {
+    try {
+      const response = await blogService.deletePost(id);
+      context.commit("DELETE_BLOG_ENTRY", id)
+      setMessage(context, response.data.message, 'green');
+      router.push({ name: "Home" }).catch(()=>{});
+    } catch (error) {
+      console.log(error)
+      setMessage(context, error.response.data.message);
+    }
+  },
 };

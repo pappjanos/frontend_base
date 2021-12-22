@@ -17,6 +17,14 @@ class BlogService extends Service {
   addPost(post) {
     return this.api.post("/blog-entry", post)
   }
+
+  patchPost(patch) {
+    return this.api.patch("/blog-entry", patch)
+  }
+
+  deletePost(id) {
+    return this.api.delete("/blog-entry",  { data: { id } })
+  }
 }
 
 const blogService = new BlogService();
