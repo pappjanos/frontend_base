@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div v-for="blogEntry in blogEntries" :key="blogEntry.id">
-      <BlogItem :blogEntry="blogEntry" />
+    <div v-if="blogEntries.length">
+      <div v-for="blogEntry in blogEntries" :key="blogEntry.id">
+        <BlogItem :blogEntry="blogEntry" />
+      </div>
     </div>
+    <div class="pt-10" align="center" v-else>No any posts yet! :(</div>
   </div>
 </template>
 
